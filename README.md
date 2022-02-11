@@ -1,5 +1,5 @@
 # words
 
-a minimalist blog app.
+a minimalist blog platform.
 
 a work in progress!
