@@ -2,8 +2,7 @@
   "name": "words-backend",
   "private": true,
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "deploy": "serverless deploy"
   },
   "dependencies": {
     "apollo-server-lambda": "^3.6.3",
