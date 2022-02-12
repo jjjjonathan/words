@@ -1,7 +1,11 @@
+org: jjjjonathan
+app: words
 service: apollo-lambda
 provider:
   name: aws
   runtime: nodejs14.x
+  region: us-west-1
+  stage: dev
 functions:
   graphql:
     # this is formatted as <FILENAME>.<HANDLER>
@@ -15,3 +19,9 @@ functions:
           path: /
           method: get
           cors: true
+plugins:
+  - serverless-offline
+custom:
+  serverless-offline:
+    httpPort: 4000
+    noPrependStageInUrl: true
