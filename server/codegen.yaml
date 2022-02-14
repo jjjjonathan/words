@@ -1,13 +1,21 @@
 overwrite: true
-schema: "schemas/"
-documents: "src/**/*.graphql"
+schema: './schemas'
 generates:
-  src/generated/graphql.tsx:
+  ./generated/resolvers-types.ts:
+    config:
+      useIndexSignature: true
     plugins:
-      - "typescript"
-      - "typescript-operations"
-      - "typescript-resolvers"
-      - "typescript-react-apollo"
-  ./graphql.schema.json:
-    plugins:
-      - "introspection"
+      - typescript
+      - typescript-resolvers
+# TODO add plugins back in for frontend gen
+# documents: "src/**/*.graphql"
+# generates:
+#   src/generated/graphql.tsx:
+#     plugins:
+#       - 'typescript'
+#       - 'typescript-operations'
+#       - 'typescript-resolvers'
+#       - 'typescript-react-apollo'
+#   ./graphql.schema.json:
+#     plugins:
+#       - 'introspection'
