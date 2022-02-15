@@ -4,6 +4,7 @@ type Blog implements Timestamps {
   owner: User!
   title: String!
   subtitle: String
+  posts: [Post]!
   slug: String!
   createdAt: Date!
   updatedAt: Date!
@@ -12,6 +13,17 @@ type Blog implements Timestamps {
 scalar Date
 
 interface Timestamps {
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+type Post implements Timestamps {
+  id: Int!
+  title: String!
+  body: String!
+  blog: Blog!
+  author: User!
+  slug: String!
   createdAt: Date!
   updatedAt: Date!
 }
@@ -25,6 +37,7 @@ type User implements Timestamps {
   passwordHash: String!
   location: String
   blogs: [Blog]!
+  posts: [Post]!
   createdAt: Date!
   updatedAt: Date!
 }

@@ -1,0 +1,11 @@
+type Post implements Timestamps {
+  id: Int!
+  title: String!
+  body: String!
+  blog: Blog!
+  author: User!
+  slug: String!
+
+  createdAt: Date!
+  updatedAt: Date!
+}

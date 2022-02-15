@@ -3,6 +3,7 @@ type Blog implements Timestamps {
   owner: User!
   title: String!
   subtitle: String
+  posts: [Post]!
   slug: String!
   # TODO add blog description?
 

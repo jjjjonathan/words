@@ -13,6 +13,7 @@ const resolvers: Resolvers = {
       updatedAt: new Date(),
       location: 'Here',
       blogs: [],
+      posts: [],
     }),
   },
 };
