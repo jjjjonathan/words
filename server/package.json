@@ -5,7 +5,8 @@
     "dev": "npm run generate && serverless offline",
     "deploy": "npm run generate && serverless deploy",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "generate": "ts-node codegen.ts"
+    "generate": "ts-node codegen.ts",
+    "seed": "psql postgres < db/schema.sql && ts-node db/seed.ts"
   },
   "dependencies": {
     "apollo-server-lambda": "^3.6.3",

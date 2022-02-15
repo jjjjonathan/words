@@ -6,7 +6,6 @@ CREATE DATABASE words_dev;
 -- Make sure we're using our `blog` database
 \c words_dev;
 
--- We can create our user table
 CREATE TABLE IF NOT EXISTS users (
   id SERIAL PRIMARY KEY,
   first_name VARCHAR NOT NULL,
@@ -21,7 +20,9 @@ CREATE TABLE IF NOT EXISTS users (
   updated_at TIMESTAMP NOT NULL
 );
 
--- We can create our post table
+INSERT INTO users (first_name, last_name, username, password_hash, email, created_at, updated_at) VALUES ("Jonny", "Dog", "jonnythedog", "aunfwiouefoijwef", "example@example.com", "2022-02-15T10:38:10.304Z", "2022-02-15T10:38:10.304Z")
+
+
 -- CREATE TABLE IF NOT EXISTS post (
 --   id SERIAL PRIMARY KEY,
 --   userId INTEGER REFERENCES user(id),
