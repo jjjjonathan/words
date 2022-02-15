@@ -4,15 +4,14 @@ type User implements Timestamps {
   lastName: String!
   username: String!
   email: String!
-  passwordHash: String!
   location: String
+  bio: String
   blogs: [Blog]!
   posts: [Post]!
   # TODO add web links
-  # TODO add bio?
 
-  createdAt: Date!
-  updatedAt: Date!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type Query {

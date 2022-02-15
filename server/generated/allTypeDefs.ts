@@ -6,15 +6,15 @@ type Blog implements Timestamps {
   subtitle: String
   posts: [Post]!
   slug: String!
-  createdAt: Date!
-  updatedAt: Date!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
-scalar Date
+scalar DateTime
 
 interface Timestamps {
-  createdAt: Date!
-  updatedAt: Date!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type Post implements Timestamps {
@@ -24,8 +24,8 @@ type Post implements Timestamps {
   blog: Blog!
   author: User!
   slug: String!
-  createdAt: Date!
-  updatedAt: Date!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type User implements Timestamps {
@@ -34,12 +34,12 @@ type User implements Timestamps {
   lastName: String!
   username: String!
   email: String!
-  passwordHash: String!
   location: String
+  bio: String
   blogs: [Blog]!
   posts: [Post]!
-  createdAt: Date!
-  updatedAt: Date!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type Query {

@@ -8,7 +8,6 @@ const resolvers: Resolvers = {
       lastName: 'Dog',
       username: 'jonnythedog',
       email: 'example@example.com',
-      passwordHash: 'qoiwuehfv9w83b4f9bw8q30834',
       createdAt: new Date(),
       updatedAt: new Date(),
       location: 'Here',

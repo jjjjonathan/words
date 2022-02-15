@@ -12,7 +12,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  Date: any;
+  DateTime: any;
 };
 
 export type Blog = Timestamps & {
@@ -23,13 +23,13 @@ export type Blog = Timestamps & {
   subtitle?: Maybe<Scalars['String']>;
   posts: Array<Maybe<Post>>;
   slug: Scalars['String'];
-  createdAt: Scalars['Date'];
-  updatedAt: Scalars['Date'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
 };
 
 export type Timestamps = {
-  createdAt: Scalars['Date'];
-  updatedAt: Scalars['Date'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
 };
 
 export type Post = Timestamps & {
@@ -40,8 +40,8 @@ export type Post = Timestamps & {
   blog: Blog;
   author: User;
   slug: Scalars['String'];
-  createdAt: Scalars['Date'];
-  updatedAt: Scalars['Date'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
 };
 
 export type User = Timestamps & {
@@ -51,12 +51,12 @@ export type User = Timestamps & {
   lastName: Scalars['String'];
   username: Scalars['String'];
   email: Scalars['String'];
-  passwordHash: Scalars['String'];
   location?: Maybe<Scalars['String']>;
+  bio?: Maybe<Scalars['String']>;
   blogs: Array<Maybe<Blog>>;
   posts: Array<Maybe<Post>>;
-  createdAt: Scalars['Date'];
-  updatedAt: Scalars['Date'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
 };
 
 export type Query = {
@@ -142,7 +142,7 @@ export type ResolversTypes = ResolversObject<{
   Blog: ResolverTypeWrapper<Blog>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   String: ResolverTypeWrapper<Scalars['String']>;
-  Date: ResolverTypeWrapper<Scalars['Date']>;
+  DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
   Timestamps: ResolversTypes['Blog'] | ResolversTypes['Post'] | ResolversTypes['User'];
   Post: ResolverTypeWrapper<Post>;
   User: ResolverTypeWrapper<User>;
@@ -155,7 +155,7 @@ export type ResolversParentTypes = ResolversObject<{
   Blog: Blog;
   Int: Scalars['Int'];
   String: Scalars['String'];
-  Date: Scalars['Date'];
+  DateTime: Scalars['DateTime'];
   Timestamps: ResolversParentTypes['Blog'] | ResolversParentTypes['Post'] | ResolversParentTypes['User'];
   Post: Post;
   User: User;
@@ -170,19 +170,19 @@ export type BlogResolvers<ContextType = any, ParentType extends ResolversParentT
   subtitle?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   posts?: Resolver<Array<Maybe<ResolversTypes['Post']>>, ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  createdAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
-  updatedAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
+  updatedAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
-export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Date'], any> {
-  name: 'Date';
+export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['DateTime'], any> {
+  name: 'DateTime';
 }
 
 export type TimestampsResolvers<ContextType = any, ParentType extends ResolversParentTypes['Timestamps'] = ResolversParentTypes['Timestamps']> = ResolversObject<{
   __resolveType: TypeResolveFn<'Blog' | 'Post' | 'User', ParentType, ContextType>;
-  createdAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
-  updatedAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
+  updatedAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
 }>;
 
 export type PostResolvers<ContextType = any, ParentType extends ResolversParentTypes['Post'] = ResolversParentTypes['Post']> = ResolversObject<{
@@ -192,8 +192,8 @@ export type PostResolvers<ContextType = any, ParentType extends ResolversParentT
   blog?: Resolver<ResolversTypes['Blog'], ParentType, ContextType>;
   author?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
   slug?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  createdAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
-  updatedAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
+  updatedAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -203,12 +203,12 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
   lastName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   username?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  passwordHash?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   location?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  bio?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   blogs?: Resolver<Array<Maybe<ResolversTypes['Blog']>>, ParentType, ContextType>;
   posts?: Resolver<Array<Maybe<ResolversTypes['Post']>>, ParentType, ContextType>;
-  createdAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
-  updatedAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
+  updatedAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -218,7 +218,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 
 export type Resolvers<ContextType = any> = ResolversObject<{
   Blog?: BlogResolvers<ContextType>;
-  Date?: GraphQLScalarType;
+  DateTime?: GraphQLScalarType;
   Timestamps?: TimestampsResolvers<ContextType>;
   Post?: PostResolvers<ContextType>;
   User?: UserResolvers<ContextType>;

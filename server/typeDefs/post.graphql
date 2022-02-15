@@ -6,6 +6,6 @@ type Post implements Timestamps {
   author: User!
   slug: String!
 
-  createdAt: Date!
-  updatedAt: Date!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }

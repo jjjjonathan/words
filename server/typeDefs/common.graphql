@@ -1,6 +1,6 @@
-scalar Date
+scalar DateTime
 
 interface Timestamps {
-  createdAt: Date!
-  updatedAt: Date!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }

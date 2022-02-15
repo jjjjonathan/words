@@ -7,6 +7,6 @@ type Blog implements Timestamps {
   slug: String!
   # TODO add blog description?
 
-  createdAt: Date!
-  updatedAt: Date!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
