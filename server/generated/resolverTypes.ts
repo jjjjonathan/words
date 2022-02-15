@@ -15,6 +15,24 @@ export type Scalars = {
   Date: any;
 };
 
+export type Blog = {
+  __typename?: 'Blog';
+  id: Scalars['Int'];
+  name: Scalars['String'];
+};
+
+export type User = {
+  __typename?: 'User';
+  id: Scalars['Int'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  username: Scalars['String'];
+  email: Scalars['String'];
+  passwordHash: Scalars['String'];
+  userSince: Scalars['Date'];
+  location?: Maybe<Scalars['String']>;
+};
+
 export type Query = {
   __typename?: 'Query';
   user?: Maybe<User>;
@@ -22,18 +40,6 @@ export type Query = {
 
 
 export type QueryUserArgs = {
-  username: Scalars['String'];
-};
-
-export type User = {
-  __typename?: 'User';
-  email: Scalars['String'];
-  firstName: Scalars['String'];
-  id: Scalars['Int'];
-  lastName: Scalars['String'];
-  location?: Maybe<Scalars['String']>;
-  passwordHash: Scalars['String'];
-  userSince: Scalars['Date'];
   username: Scalars['String'];
 };
 
@@ -107,47 +113,56 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
-  Date: ResolverTypeWrapper<Scalars['Date']>;
+  Blog: ResolverTypeWrapper<Blog>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
-  Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
+  Date: ResolverTypeWrapper<Scalars['Date']>;
   User: ResolverTypeWrapper<User>;
+  Query: ResolverTypeWrapper<{}>;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
-  Boolean: Scalars['Boolean'];
-  Date: Scalars['Date'];
+  Blog: Blog;
   Int: Scalars['Int'];
-  Query: {};
   String: Scalars['String'];
+  Date: Scalars['Date'];
   User: User;
+  Query: {};
+  Boolean: Scalars['Boolean'];
+}>;
+
+export type BlogResolvers<ContextType = any, ParentType extends ResolversParentTypes['Blog'] = ResolversParentTypes['Blog']> = ResolversObject<{
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Date'], any> {
   name: 'Date';
 }
 
+export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = ResolversObject<{
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  firstName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  lastName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  username?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  passwordHash?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  userSince?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  location?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUserArgs, 'username'>>;
 }>;
 
-export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = ResolversObject<{
-  email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  firstName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  lastName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  location?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  passwordHash?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  userSince?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
-  username?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
 export type Resolvers<ContextType = any> = ResolversObject<{
+  Blog?: BlogResolvers<ContextType>;
   Date?: GraphQLScalarType;
-  Query?: QueryResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
+  Query?: QueryResolvers<ContextType>;
 }>;
 
