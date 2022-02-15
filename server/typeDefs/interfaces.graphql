@@ -1,5 +1,3 @@
-scalar DateTime
-
 interface Timestamps {
   createdAt: DateTime!
   updatedAt: DateTime!

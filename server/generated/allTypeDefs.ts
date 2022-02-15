@@ -10,8 +10,6 @@ type Blog implements Timestamps {
   updatedAt: DateTime!
 }
 
-scalar DateTime
-
 interface Timestamps {
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -27,6 +25,8 @@ type Post implements Timestamps {
   createdAt: DateTime!
   updatedAt: DateTime!
 }
+
+scalar DateTime
 
 type User implements Timestamps {
   id: Int!
