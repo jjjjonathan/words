@@ -1,4 +1,11 @@
-type Blog {
+type Blog implements Timestamps {
   id: Int!
-  name: String!
+  owner: User!
+  title: String!
+  subtitle: String
+  slug: String!
+  # TODO add blog description?
+
+  createdAt: Date!
+  updatedAt: Date!
 }

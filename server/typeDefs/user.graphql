@@ -1,14 +1,17 @@
-scalar Date
-
-type User {
+type User implements Timestamps {
   id: Int!
   firstName: String!
   lastName: String!
   username: String!
   email: String!
   passwordHash: String!
-  userSince: Date!
   location: String
+  blogs: [Blog]!
+  # TODO add web links
+  # TODO add bio?
+
+  createdAt: Date!
+  updatedAt: Date!
 }
 
 type Query {

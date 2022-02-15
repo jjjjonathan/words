@@ -1,4 +1,4 @@
-import { Resolvers } from '../generated/resolvers-types';
+import { Resolvers } from '../generated/resolverTypes';
 
 const resolvers: Resolvers = {
   Query: {
@@ -9,8 +9,10 @@ const resolvers: Resolvers = {
       username: 'jonnythedog',
       email: 'example@example.com',
       passwordHash: 'qoiwuehfv9w83b4f9bw8q30834',
-      userSince: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
       location: 'Here',
+      blogs: [],
     }),
   },
 };
