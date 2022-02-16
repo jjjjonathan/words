@@ -6,7 +6,7 @@ CREATE DATABASE words_dev;
 -- Make sure we're using our `blog` database
 \c words_dev;
 
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   first_name VARCHAR NOT NULL,
   last_name VARCHAR NOT NULL,
@@ -15,19 +15,30 @@ CREATE TABLE IF NOT EXISTS users (
   email VARCHAR UNIQUE NOT NULL,
   location VARCHAR,
   bio VARCHAR,
-  -- TODO add blogs and posts
+  -- blogs
+  -- posts
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP NOT NULL
 );
 
-INSERT INTO users (first_name, last_name, username, password_hash, email, created_at, updated_at) VALUES ("Jonny", "Dog", "jonnythedog", "aunfwiouefoijwef", "example@example.com", "2022-02-15T10:38:10.304Z", "2022-02-15T10:38:10.304Z")
+CREATE TABLE blogs (
+  id SERIAL PRIMARY KEY,
+  owner INTEGER REFERENCES users(id),
+  title VARCHAR NOT NULL,
+  subtitle VARCHAR,
+  -- posts
+  slug VARCHAR NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP NOT NULL
+);
 
-
--- CREATE TABLE IF NOT EXISTS post (
---   id SERIAL PRIMARY KEY,
---   userId INTEGER REFERENCES user(id),
---   title VARCHAR,
---   content TEXT,
---   image VARCHAR,
---   date DATE DEFAULT CURRENT_DATE
--- );
+CREATE TABLE posts (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR NOT NULL,
+  body TEXT NOT NULL,
+  blog INTEGER REFERENCES blogs(id),
+  author INTEGER REFERENCES users(id),
+  slug VARCHAR NOT NULL,
+  reated_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP NOT NULL
+);
