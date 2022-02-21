@@ -12,7 +12,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  DateTime: undefined;
+  DateTime: any;
 };
 
 export type Blog = Timestamps & {
@@ -23,13 +23,13 @@ export type Blog = Timestamps & {
   subtitle?: Maybe<Scalars['String']>;
   posts: Array<Maybe<Post>>;
   slug: Scalars['String'];
-  createdAt: DateTime;
-  updatedAt: DateTime;
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
 };
 
 export type Timestamps = {
-  createdAt: DateTime;
-  updatedAt: DateTime;
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
 };
 
 export type Post = Timestamps & {
@@ -40,8 +40,8 @@ export type Post = Timestamps & {
   blog: Blog;
   author: User;
   slug: Scalars['String'];
-  createdAt: DateTime;
-  updatedAt: DateTime;
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
 };
 
 export type User = Timestamps & {
@@ -55,8 +55,8 @@ export type User = Timestamps & {
   bio?: Maybe<Scalars['String']>;
   blogs: Array<Maybe<Blog>>;
   posts: Array<Maybe<Post>>;
-  createdAt: DateTime;
-  updatedAt: DateTime;
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
 };
 
 export type Query = {

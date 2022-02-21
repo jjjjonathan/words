@@ -12,9 +12,9 @@ import * as typescriptResolversPlugin from '@graphql-codegen/typescript-resolver
 import { codegen } from '@graphql-codegen/core';
 
 // Set paths
-const typeDefsDir = './typeDefs';
-const typeDefsOutputFile = './generated/allTypeDefs.ts';
-const resolverTypesOutputFile = './generated/resolverTypes.ts';
+const typeDefsDir = './type-defs';
+const typeDefsOutputFile = './generated/all-type-defs.ts';
+const resolverTypesOutputFile = './generated/resolver-types.ts';
 
 async function generate() {
   console.log('Starting GraphQL code generation...');
