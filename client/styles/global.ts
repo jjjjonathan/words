@@ -16,6 +16,14 @@ const GlobalStyle = createGlobalStyle`
     /* Fonts */
     --font-primary: "Ibarra Real Nova", sans-serif;
     --font-weight-default: 400;
+
+    /************************/
+
+    box-sizing: border-box;
+  }
+
+  *, *:before, *:after {
+    box-sizing: border-box;
   }
 
   body {
