@@ -5,6 +5,10 @@ CREATE DATABASE words_dev;
 -- Move into the database
 \c words_dev;
 
+------------
+-- SCHEMA --
+------------
+
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   first_name VARCHAR NOT NULL,
@@ -41,3 +45,29 @@ CREATE TABLE posts (
   created_at TIMESTAMP NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
+
+-- Create trigger function to auto-update updated_at timestamp
+CREATE OR REPLACE FUNCTION trigger_set_timestamp()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Set trigger on each table
+
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON users
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();
+
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON blogs
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();
+
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON posts
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();
