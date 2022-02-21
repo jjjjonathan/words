@@ -4,10 +4,10 @@ import { faker } from '@faker-js/faker';
 
 export function createUser() {
   return {
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
+    first_name: faker.name.firstName(),
+    last_name: faker.name.lastName(),
     username: faker.fake('{{word.adjective}}{{word.noun}}'),
-    passwordHash: faker.random.alphaNumeric(16),
+    password_hash: faker.random.alphaNumeric(16),
     email: faker.internet.email(),
     location: faker.address.city(),
     bio: faker.fake(
