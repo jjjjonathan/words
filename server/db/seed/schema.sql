@@ -1,9 +1,8 @@
 -- Delete existing database and create new one
 DROP DATABASE IF EXISTS words_dev;
-
 CREATE DATABASE words_dev;
 
--- Make sure we're using our `blog` database
+-- Move into the database
 \c words_dev;
 
 CREATE TABLE users (
@@ -39,6 +38,6 @@ CREATE TABLE posts (
   blog INTEGER REFERENCES blogs(id),
   author INTEGER REFERENCES users(id),
   slug VARCHAR NOT NULL,
-  reated_at TIMESTAMP NOT NULL,
+  created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP NOT NULL
 );
