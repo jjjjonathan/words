@@ -37,6 +37,8 @@ async function seed() {
     ],
   );
 
+  console.log('Seeding users...');
+
   // Seed users and get user IDs
   const userQueryRes: QueryResult<{ id: number }> = await db.query(
     format(
@@ -48,7 +50,40 @@ async function seed() {
   // Convert result into array of numbers
   const userIDs = userQueryRes.rows.map((row) => row.id);
 
-  // Generate fake blogs & assign random user as blog owner
+  // Generate fake blogs
+  const fakeBlogs = [];
+  for (let i = 0; i < blogsSeedCount; i += 1) {
+    fakeBlogs.push(createBlog());
+  }
+
+  // Get random user ID from array of ids
+  const getRandomUserID = () => {
+    const idIndex = Math.floor(Math.random() * usersSeedCount);
+    return userIDs[idIndex];
+  };
+
+  // Convert object to array & assign random user as blog owner
+  const fakeBlogsArrays = fakeBlogs.map(({ title, subtitle, slug }) => [
+    getRandomUserID(),
+    title,
+    subtitle,
+    slug,
+  ]);
+
+  console.log('Seeding blogs...');
+
+  // Seed blogs and get blog IDs
+  const blogQueryRes: QueryResult<{ id: number }> = await db.query(
+    format(
+      'INSERT INTO blogs (owner, title, subtitle, slug) VALUES %L RETURNING id',
+      fakeBlogsArrays,
+    ),
+  );
+
+  // Convert result into array of numbers
+  const blogIDs = blogQueryRes.rows.map((row) => row.id);
+
+  console.log(blogIDs);
 }
 
 seed();
