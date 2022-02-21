@@ -1,10 +1,11 @@
 import type { NextPage } from 'next';
 import Layout from '../components/layout';
+import Logo from '../components/logo';
 
 const Home: NextPage = () => (
   <Layout title="words">
     <div>
-      <h1>words</h1>
+      <Logo />
       <h2>a minimalist blog platform</h2>
     </div>
   </Layout>
