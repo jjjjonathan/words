@@ -16,8 +16,8 @@ CREATE TABLE users (
   bio VARCHAR,
   -- blogs
   -- posts
-  created_at TIMESTAMP NOT NULL,
-  updated_at TIMESTAMP NOT NULL
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE blogs (
@@ -27,8 +27,8 @@ CREATE TABLE blogs (
   subtitle VARCHAR,
   -- posts
   slug VARCHAR NOT NULL,
-  created_at TIMESTAMP NOT NULL,
-  updated_at TIMESTAMP NOT NULL
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE posts (
@@ -38,6 +38,6 @@ CREATE TABLE posts (
   blog INTEGER REFERENCES blogs(id),
   author INTEGER REFERENCES users(id),
   slug VARCHAR NOT NULL,
-  created_at TIMESTAMP NOT NULL,
-  updated_at TIMESTAMP NOT NULL
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
