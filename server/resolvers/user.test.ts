@@ -35,7 +35,21 @@ describe('User resolver', () => {
     expect(user.updatedAt).toEqual(expect.any(Date));
   });
 
-  test.todo('should return an error with a non-existent username');
+  test('should return null with a non-existent username', async () => {
+    const query = gql`
+      {
+        user(username: "notarealuser") {
+          id
+          username
+        }
+      }
+    `;
+
+    const result = await server.executeOperation({ query });
+    const user = result?.data?.user;
+
+    expect(user).toEqual(null);
+  });
 
   test.todo('should return an array of blog posts');
 
