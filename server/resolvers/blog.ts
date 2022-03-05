@@ -13,6 +13,10 @@ const resolvers: Resolvers = {
   Blog: {
     owner: async ({ owner }, args, context) => {
       const user = await getUserById(owner, context);
+
+      if (user === null)
+        throw new Error('Blog owner ID does not point to a valid user');
+
       return user;
     },
   },
