@@ -10,3 +10,7 @@ type Blog implements Timestamps {
   createdAt: DateTime!
   updatedAt: DateTime!
 }
+
+type Query {
+  blog(slug: String!): Blog
+}

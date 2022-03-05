@@ -10,6 +10,11 @@ type Blog implements Timestamps {
   updatedAt: DateTime!
 }
 
+type Query {
+  blog(slug: String!): Blog
+  user(username: String!): User
+}
+
 interface Timestamps {
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -40,10 +45,6 @@ type User implements Timestamps {
   posts: [Post]!
   createdAt: DateTime!
   updatedAt: DateTime!
-}
-
-type Query {
-  user(username: String!): User
 }
 
 schema {
