@@ -52,7 +52,24 @@ describe('Blog resolver', () => {
     expect(blog.owner.createdAt).toEqual(expect.any(Date));
   });
 
-  test.todo('should return an error with a non-existent slug');
+  test('should return null with a non-existent slug', async () => {
+    const query = gql`
+      {
+        blog(slug: "not-a-real-blog") {
+          owner {
+            id
+            username
+          }
+        }
+      }
+    `;
+
+    const result = await server.executeOperation({ query });
+    const blog = result?.data?.blog;
+
+    expect(blog).toEqual(null);
+    expect(result?.errors).toBe(undefined);
+  });
 
   test.todo('should return an array of blog posts');
 

@@ -49,6 +49,7 @@ describe('User resolver', () => {
     const user = result?.data?.user;
 
     expect(user).toEqual(null);
+    expect(result?.errors).toBe(undefined);
   });
 
   test.todo('should return an array of blog posts');

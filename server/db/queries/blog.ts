@@ -19,7 +19,10 @@ export const getBlogBySlug = async (slug: string, context: MyContext) => {
     'SELECT * FROM blogs WHERE slug=$1',
     [slug],
   );
-  const blog = rows[0];
+  // Return null if blog is not found
+  if (rows.length === 0) return null;
 
+  // Else format and return first row
+  const blog = rows[0];
   return formatBlog(blog);
 };
