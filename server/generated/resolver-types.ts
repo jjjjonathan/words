@@ -34,11 +34,17 @@ export type Blog = Timestamps & {
 export type Query = {
   __typename?: 'Query';
   blog?: Maybe<Blog>;
+  post?: Maybe<Post>;
   user?: Maybe<User>;
 };
 
 
 export type QueryBlogArgs = {
+  slug: Scalars['String'];
+};
+
+
+export type QueryPostArgs = {
   slug: Scalars['String'];
 };
 
@@ -187,6 +193,7 @@ export type BlogResolvers<ContextType = MyContext, ParentType extends ResolversP
 
 export type QueryResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
   blog?: Resolver<Maybe<ResolversTypes['Blog']>, ParentType, ContextType, RequireFields<QueryBlogArgs, 'slug'>>;
+  post?: Resolver<Maybe<ResolversTypes['Post']>, ParentType, ContextType, RequireFields<QueryPostArgs, 'slug'>>;
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUserArgs, 'username'>>;
 }>;
 

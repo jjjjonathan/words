@@ -9,3 +9,7 @@ type Post implements Timestamps {
   createdAt: DateTime!
   updatedAt: DateTime!
 }
+
+type Query {
+  post(slug: String!): Post
+}

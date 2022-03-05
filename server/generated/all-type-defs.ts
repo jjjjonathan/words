@@ -12,6 +12,7 @@ type Blog implements Timestamps {
 
 type Query {
   blog(slug: String!): Blog
+  post(slug: String!): Post
   user(username: String!): User
 }
 
