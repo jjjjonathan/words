@@ -1,6 +1,7 @@
 import { gql } from 'apollo-server-lambda';
 import { server } from '../graphql';
 import { user1 } from '../db/seed/test-seed-data';
+import context from '../context';
 
 describe('User resolver', () => {
   test('should return valid primitive data with a username argument', async () => {
@@ -41,4 +42,8 @@ describe('User resolver', () => {
   test.todo('should return an array of blogs');
 
   test.todo('should return null with empty nullable fields');
+});
+
+afterAll(async () => {
+  await context.db.end();
 });

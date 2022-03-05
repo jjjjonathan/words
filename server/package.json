@@ -6,7 +6,7 @@
     "deploy": "serverless deploy",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "generate": "ts-node codegen.ts",
-    "test": "npm run db:seed:test && jest",
+    "test": "npm run db:seed:test && jest --watch",
     "db:seed:dev": "bash db/seed/dev-seed.sh",
     "db:seed:test": "bash db/seed/test-seed.sh"
   },
