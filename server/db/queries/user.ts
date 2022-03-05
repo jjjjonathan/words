@@ -39,7 +39,11 @@ export const getUserById = async (id: number, context: MyContext) => {
     'SELECT * FROM users WHERE id=$1',
     [id],
   );
-  const user = rows[0];
 
+  // Return null if user is not found
+  if (rows.length === 0) return null;
+
+  // Else format and return first row
+  const user = rows[0];
   return formatUser(user);
 };
