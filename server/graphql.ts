@@ -3,7 +3,7 @@ import typeDefs from './generated/all-type-defs';
 import resolvers from './resolvers';
 import context from './context';
 
-const server = new ApolloServer({
+export const server = new ApolloServer({
   typeDefs,
   resolvers,
   context,
