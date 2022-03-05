@@ -11,6 +11,6 @@ psql postgres -v dbname="words_dev" -f db/seed/schema.sql
 echo "Database and tables created!"
 echo "Generating fake data..."
 
-ts-node db/seed/dev-seed.ts
+NODE_ENV=development ts-node db/seed/dev-seed.ts
 
 echo "All done!"
