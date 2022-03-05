@@ -1,10 +1,13 @@
 import { MyContext } from '../context';
 import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
+import { GQLUserModel } from '../db/queries/user';
+import { GQLBlogModel } from '../db/queries/blog';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -146,27 +149,27 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
-  Blog: ResolverTypeWrapper<Blog>;
+  Blog: ResolverTypeWrapper<GQLBlogModel>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   String: ResolverTypeWrapper<Scalars['String']>;
   Query: ResolverTypeWrapper<{}>;
   Timestamps: ResolversTypes['Blog'] | ResolversTypes['Post'] | ResolversTypes['User'];
-  Post: ResolverTypeWrapper<Post>;
+  Post: ResolverTypeWrapper<Omit<Post, 'blog' | 'author'> & { blog: ResolversTypes['Blog'], author: ResolversTypes['User'] }>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
-  User: ResolverTypeWrapper<User>;
+  User: ResolverTypeWrapper<GQLUserModel>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
-  Blog: Blog;
+  Blog: GQLBlogModel;
   Int: Scalars['Int'];
   String: Scalars['String'];
   Query: {};
   Timestamps: ResolversParentTypes['Blog'] | ResolversParentTypes['Post'] | ResolversParentTypes['User'];
-  Post: Post;
+  Post: Omit<Post, 'blog' | 'author'> & { blog: ResolversParentTypes['Blog'], author: ResolversParentTypes['User'] };
   DateTime: Scalars['DateTime'];
-  User: User;
+  User: GQLUserModel;
   Boolean: Scalars['Boolean'];
 }>;
 

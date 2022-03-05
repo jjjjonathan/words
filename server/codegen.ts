@@ -41,6 +41,10 @@ async function generate() {
     documents: [],
     config: {
       contextType: 'MyContext',
+      mappers: {
+        User: '../db/queries/user#GQLUserModel',
+        Blog: '../db/queries/blog#GQLBlogModel',
+      },
     },
     // filename is used by a plugin internally. The 'typescript' plugin
     // returns the string output rather than writing to a file
