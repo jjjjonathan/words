@@ -1,5 +1,4 @@
 import { Resolvers } from '../generated/resolver-types';
-import db from '../db';
 
 type UserQueryResult = {
   id: number;
@@ -16,7 +15,7 @@ type UserQueryResult = {
 
 const resolvers: Resolvers = {
   Query: {
-    user: async (parent, { username }) => {
+    user: async (parent, { username }, { db }) => {
       const { rows } = await db.query<UserQueryResult>(
         'SELECT * FROM users WHERE username=$1',
         [username],

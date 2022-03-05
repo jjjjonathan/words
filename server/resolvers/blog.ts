@@ -1,5 +1,4 @@
 import { Resolvers } from '../generated/resolver-types';
-import db from '../db';
 
 type BlogQueryResult = {
   id: number;
@@ -13,7 +12,7 @@ type BlogQueryResult = {
 
 const resolvers: Resolvers = {
   Query: {
-    blog: async (parent, { slug }) => {
+    blog: async (parent, { slug }, { db }) => {
       const { rows } = await db.query<BlogQueryResult>(
         'SELECT * FROM blogs WHERE slug=$1',
         [slug],
