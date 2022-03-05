@@ -7,6 +7,7 @@ import { loadFiles } from '@graphql-tools/load-files';
 import { mergeTypeDefs } from '@graphql-tools/merge';
 import { print } from 'graphql';
 import { Types as CodegenPluginTypes } from '@graphql-codegen/plugin-helpers/types';
+import * as addPlugin from '@graphql-codegen/add';
 import * as typescriptPlugin from '@graphql-codegen/typescript';
 import * as typescriptResolversPlugin from '@graphql-codegen/typescript-resolvers';
 import { codegen } from '@graphql-codegen/core';
@@ -38,12 +39,21 @@ async function generate() {
   // Make sure each plugin is its own object in plugins array.
   const config: CodegenPluginTypes.GenerateOptions = {
     documents: [],
-    config: {},
+    config: {
+      contextType: 'MyContext',
+    },
     // filename is used by a plugin internally. The 'typescript' plugin
     // returns the string output rather than writing to a file
     filename: resolverTypesOutputFile,
     schema: allTypeDefs,
     plugins: [
+      {
+        add: {
+          // This must match the contextType in config above to properly import and use the context
+          // Path is relative to "generated" folder
+          content: "import { MyContext } from '../context';",
+        },
+      },
       {
         typescript: {},
       },
@@ -55,6 +65,7 @@ async function generate() {
       // Write script to copy files to client folder.
     ],
     pluginMap: {
+      add: addPlugin,
       typescript: typescriptPlugin,
       typescriptResolvers: typescriptResolversPlugin,
     },
