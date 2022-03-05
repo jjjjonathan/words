@@ -1,9 +1,9 @@
 -- Delete existing database and create new one
-DROP DATABASE IF EXISTS words_dev;
-CREATE DATABASE words_dev;
+DROP DATABASE IF EXISTS :dbname;
+CREATE DATABASE :dbname;
 
 -- Move into the database
-\c words_dev;
+\c :dbname;
 
 ------------
 -- SCHEMA --

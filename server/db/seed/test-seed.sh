@@ -1,15 +1,16 @@
 #!/bin/bash
 
+echo "Seeding for testing..."
 echo "Running seed script..."
 echo "Creating database and tables..."
 
-# Run SQL file in psql
+# Run SQL files in psql
 
-psql postgres < db/seed/schema.sql
+psql postgres -v dbname="words_test" -f db/seed/schema.sql
 
 echo "Database and tables created!"
 echo "Generating fake data..."
 
-ts-node db/seed/seed.ts
+NODE_ENV=test ts-node db/seed/test-seed.ts
 
 echo "All done!"
