@@ -1,6 +1,7 @@
-import dotenv from 'dotenv';
+/// <reference types="./declarations" />
+import customEnv from 'custom-env';
 
-dotenv.config();
+customEnv.env();
 
 const rawPort = process.env.PGPORT;
 

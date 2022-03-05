@@ -6,12 +6,13 @@
     "deploy": "npm run generate && serverless deploy",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "generate": "ts-node codegen.ts",
-    "seed": "bash db/seed/seed.sh"
+    "db:seed:dev": "bash db/seed/dev-seed.sh",
+    "db:seed:test": "bash db/seed/test-seed.sh"
   },
   "dependencies": {
     "@graphql-tools/merge": "^8.2.3",
     "apollo-server-lambda": "^3.6.3",
-    "dotenv": "^16.0.0",
+    "custom-env": "^2.0.1",
     "graphql": "^16.3.0",
     "graphql-scalars": "^1.14.1",
     "pg": "^8.7.3",
