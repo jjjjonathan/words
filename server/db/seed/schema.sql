@@ -30,7 +30,7 @@ CREATE TABLE blogs (
   title VARCHAR NOT NULL,
   subtitle VARCHAR,
   -- posts
-  slug VARCHAR NOT NULL,
+  slug VARCHAR UNIQUE NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
@@ -41,7 +41,7 @@ CREATE TABLE posts (
   body TEXT NOT NULL,
   blog INTEGER REFERENCES blogs(id),
   author INTEGER REFERENCES users(id),
-  slug VARCHAR NOT NULL,
+  slug VARCHAR UNIQUE NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
