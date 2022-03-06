@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server-lambda';
 import { server } from '../graphql';
-import { post1 } from '../db/seed/test-seed-data';
+import { post1, blog1 } from '../db/seed/test-seed-data';
 import context from '../context';
 
 describe('Post resolver', () => {
@@ -29,9 +29,36 @@ describe('Post resolver', () => {
     expect(post.updatedAt).toEqual(expect.any(Date));
   });
 
-  test.todo(
-    'should contain a valid blog object of primitive data for the parent blog',
-  );
+  test('should contain a valid blog object of primitive data for the parent blog', async () => {
+    const query = gql`
+      {
+        post(slug: "the-wonderful-world-of-beekeeping") {
+          id
+          title
+          blog {
+            id
+            title
+            subtitle
+            slug
+            createdAt
+            updatedAt
+          }
+        }
+      }
+    `;
+
+    const result = await server.executeOperation({ query });
+    const post = result?.data?.post;
+
+    expect(post.id).toEqual(1);
+    expect(post.title).toEqual(post1.title);
+    expect(post.blog.id).toEqual(1);
+    expect(post.blog.title).toEqual(blog1.title);
+    expect(post.blog.subtitle).toEqual(blog1.subtitle);
+    expect(post.blog.slug).toEqual(blog1.slug);
+    expect(post.blog.createdAt).toEqual(expect.any(Date));
+    expect(post.blog.updatedAt).toEqual(expect.any(Date));
+  });
 
   test.todo(
     'should return a valid user object of primitive data for the post author',
