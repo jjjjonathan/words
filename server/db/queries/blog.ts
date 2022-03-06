@@ -26,3 +26,13 @@ export const getBlogBySlug = async (slug: string, context: MyContext) => {
   const blog = rows[0];
   return formatBlog(blog);
 };
+
+export const getAllBlogsByUserId = async (id: number, context: MyContext) => {
+  const { rows } = await context.db.query<BlogModel>(
+    'SELECT * FROM blogs WHERE owner=$1',
+    [id],
+  );
+
+  // Format all rows
+  return rows.map((row) => formatBlog(row));
+};
