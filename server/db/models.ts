@@ -20,3 +20,14 @@ export type BlogModel = {
   created_at: Date;
   updated_at: Date;
 };
+
+export type PostModel = {
+  id: number;
+  title: string;
+  body: string;
+  blog: number;
+  author: number;
+  slug: string;
+  created_at: Date;
+  updated_at: Date;
+};
