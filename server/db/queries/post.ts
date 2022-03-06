@@ -27,3 +27,13 @@ export const getPostBySlug = async (slug: string, context: MyContext) => {
   const post = rows[0];
   return formatPost(post);
 };
+
+export const getAllPostsByUserId = async (id: number, context: MyContext) => {
+  const { rows } = await context.db.query<PostModel>(
+    'SELECT * FROM posts WHERE author=$1',
+    [id],
+  );
+
+  // Format all rows
+  return rows.map((row) => formatPost(row));
+};

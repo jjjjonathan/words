@@ -1,4 +1,5 @@
 import { getAllBlogsByUserId } from '../db/queries/blog';
+import { getAllPostsByUserId } from '../db/queries/post';
 import { getUserByUsername } from '../db/queries/user';
 import { Resolvers } from '../generated/resolver-types';
 
@@ -14,6 +15,11 @@ const resolvers: Resolvers = {
     blogs: async ({ id }, args, context) => {
       const blogs = await getAllBlogsByUserId(id, context);
       return blogs;
+    },
+
+    posts: async ({ id }, args, context) => {
+      const posts = await getAllPostsByUserId(id, context);
+      return posts;
     },
   },
 };
