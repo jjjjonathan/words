@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server-lambda';
 import { server } from '../graphql';
-import { user1, blog1 } from '../db/seed/test-seed-data';
+import { user1, blog1, post1 } from '../db/seed/test-seed-data';
 import context from '../context';
 
 describe('User resolver', () => {
@@ -52,7 +52,34 @@ describe('User resolver', () => {
     expect(result?.errors).toBe(undefined);
   });
 
-  test.todo('should return an array of blog posts');
+  test('should return an array of blog posts', async () => {
+    const query = gql`
+      {
+        user(username: "larryexample") {
+          id
+          username
+          posts {
+            id
+            title
+            body
+            slug
+            createdAt
+            updatedAt
+          }
+        }
+      }
+    `;
+
+    const result = await server.executeOperation({ query });
+    const posts = result?.data?.user.posts;
+
+    expect(posts[0].id).toEqual(1);
+    expect(posts[0].title).toEqual(post1.title);
+    expect(posts[0].body).toEqual(post1.body);
+    expect(posts[0].slug).toEqual(post1.slug);
+    expect(posts[0].createdAt).toEqual(expect.any(Date));
+    expect(posts[0].updatedAt).toEqual(expect.any(Date));
+  });
 
   test('should return an array of blogs', async () => {
     const query = gql`
