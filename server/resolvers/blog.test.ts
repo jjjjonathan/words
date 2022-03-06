@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server-lambda';
 import { server } from '../graphql';
-import { blog1, user1 } from '../db/seed/test-seed-data';
+import { blog1, user1, post1 } from '../db/seed/test-seed-data';
 import context from '../context';
 
 describe('Blog resolver', () => {
@@ -69,7 +69,32 @@ describe('Blog resolver', () => {
     expect(result?.errors).toBe(undefined);
   });
 
-  test.todo('should return an array of blog posts');
+  test('should return an array of blog posts', async () => {
+    const query = gql`
+      {
+        blog(slug: "beekeepers-paradise") {
+          id
+          title
+          posts {
+            id
+            title
+            body
+            updatedAt
+          }
+        }
+      }
+    `;
+
+    const result = await server.executeOperation({ query });
+    const blog = result?.data?.blog;
+
+    expect(blog.id).toEqual(1);
+    expect(blog.posts.length).toEqual(1);
+    expect(blog.posts[0].id).toEqual(1);
+    expect(blog.posts[0].title).toEqual(post1.title);
+    expect(blog.posts[0].body).toEqual(post1.body);
+    expect(blog.posts[0].updatedAt).toEqual(expect.any(Date));
+  });
 
   test.todo('should return null with empty nullable fields');
 });

@@ -37,3 +37,13 @@ export const getAllPostsByUserId = async (id: number, context: MyContext) => {
   // Format all rows
   return rows.map((row) => formatPost(row));
 };
+
+export const getAllPostsByBlogId = async (id: number, context: MyContext) => {
+  const { rows } = await context.db.query<PostModel>(
+    'SELECT * FROM posts WHERE blog=$1',
+    [id],
+  );
+
+  // Format all rows
+  return rows.map((row) => formatPost(row));
+};
