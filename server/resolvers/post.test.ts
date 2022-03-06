@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server-lambda';
 import { server } from '../graphql';
-import { post1, blog1 } from '../db/seed/test-seed-data';
+import { post1, blog1, user1 } from '../db/seed/test-seed-data';
 import context from '../context';
 
 describe('Post resolver', () => {
@@ -60,9 +60,34 @@ describe('Post resolver', () => {
     expect(post.blog.updatedAt).toEqual(expect.any(Date));
   });
 
-  test.todo(
-    'should return a valid user object of primitive data for the post author',
-  );
+  test('should return a valid user object of primitive data for the post author', async () => {
+    const query = gql`
+      {
+        post(slug: "the-wonderful-world-of-beekeeping") {
+          id
+          title
+          author {
+            id
+            firstName
+            lastName
+            username
+            updatedAt
+          }
+        }
+      }
+    `;
+
+    const result = await server.executeOperation({ query });
+    const post = result?.data?.post;
+
+    expect(post.id).toEqual(1);
+    expect(post.title).toEqual(post1.title);
+    expect(post.author.id).toEqual(1);
+    expect(post.author.firstName).toEqual(user1.first_name);
+    expect(post.author.lastName).toEqual(user1.last_name);
+    expect(post.author.username).toEqual(user1.username);
+    expect(post.author.updatedAt).toEqual(expect.any(Date));
+  });
 
   test('should return null with a non-existent slug', async () => {
     const query = gql`
