@@ -48,6 +48,7 @@ async function generate() {
       },
       scalars: {
         DateTime: 'Date',
+        EmailAddress: 'string',
       },
     },
     // filename is used by a plugin internally. The 'typescript' plugin

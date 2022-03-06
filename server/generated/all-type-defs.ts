@@ -34,12 +34,14 @@ type Post implements Timestamps {
 
 scalar DateTime
 
+scalar EmailAddress
+
 type User implements Timestamps {
   id: Int!
   firstName: String!
   lastName: String!
   username: String!
-  email: String!
+  email: EmailAddress!
   location: String
   bio: String
   blogs: [Blog]!

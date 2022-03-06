@@ -1,2 +1,2 @@
 scalar DateTime
-# TODO figure out GraphQL scalars
+scalar EmailAddress

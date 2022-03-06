@@ -17,6 +17,7 @@ export type Scalars = {
   Int: number;
   Float: number;
   DateTime: Date;
+  EmailAddress: string;
 };
 
 export type Blog = Timestamps & {
@@ -76,7 +77,7 @@ export type User = Timestamps & {
   firstName: Scalars['String'];
   lastName: Scalars['String'];
   username: Scalars['String'];
-  email: Scalars['String'];
+  email: Scalars['EmailAddress'];
   location?: Maybe<Scalars['String']>;
   bio?: Maybe<Scalars['String']>;
   blogs: Array<Maybe<Blog>>;
@@ -162,6 +163,7 @@ export type ResolversTypes = ResolversObject<{
   Timestamps: ResolversTypes['Blog'] | ResolversTypes['Post'] | ResolversTypes['User'];
   Post: ResolverTypeWrapper<GQLPostModel>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
+  EmailAddress: ResolverTypeWrapper<Scalars['EmailAddress']>;
   User: ResolverTypeWrapper<GQLUserModel>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 }>;
@@ -175,6 +177,7 @@ export type ResolversParentTypes = ResolversObject<{
   Timestamps: ResolversParentTypes['Blog'] | ResolversParentTypes['Post'] | ResolversParentTypes['User'];
   Post: GQLPostModel;
   DateTime: Scalars['DateTime'];
+  EmailAddress: Scalars['EmailAddress'];
   User: GQLUserModel;
   Boolean: Scalars['Boolean'];
 }>;
@@ -219,12 +222,16 @@ export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversT
   name: 'DateTime';
 }
 
+export interface EmailAddressScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['EmailAddress'], any> {
+  name: 'EmailAddress';
+}
+
 export type UserResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = ResolversObject<{
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   firstName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   lastName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   username?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  email?: Resolver<ResolversTypes['EmailAddress'], ParentType, ContextType>;
   location?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   bio?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   blogs?: Resolver<Array<Maybe<ResolversTypes['Blog']>>, ParentType, ContextType>;
@@ -240,6 +247,7 @@ export type Resolvers<ContextType = MyContext> = ResolversObject<{
   Timestamps?: TimestampsResolvers<ContextType>;
   Post?: PostResolvers<ContextType>;
   DateTime?: GraphQLScalarType;
+  EmailAddress?: GraphQLScalarType;
   User?: UserResolvers<ContextType>;
 }>;
 
