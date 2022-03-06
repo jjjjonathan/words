@@ -26,6 +26,13 @@ export const blog1 = {
   slug: 'beekeepers-paradise',
 };
 
+export const blog2 = {
+  owner: 1, // hard-coded to user 1
+  title: 'World religion world',
+  subtitle: null,
+  slug: 'world-religion-world',
+};
+
 export const post1 = {
   title: 'The wonderful world of beekeeping',
   body: 'Lorem ipsum',

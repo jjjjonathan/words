@@ -1,11 +1,11 @@
 import format from 'pg-format';
 import db from '..';
-import { user1, user2, blog1, post1 } from './test-seed-data';
+import { user1, user2, blog1, blog2, post1 } from './test-seed-data';
 
 async function seed() {
   // Test data
   const testUsers = [user1, user2];
-  const testBlogs = [blog1];
+  const testBlogs = [blog1, blog2];
   const testPosts = [post1];
 
   // Convert object to array
