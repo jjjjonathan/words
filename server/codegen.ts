@@ -46,6 +46,9 @@ async function generate() {
         Blog: '../db/queries/blog#GQLBlogModel',
         Post: '../db/queries/post#GQLPostModel',
       },
+      scalars: {
+        DateTime: 'Date',
+      },
     },
     // filename is used by a plugin internally. The 'typescript' plugin
     // returns the string output rather than writing to a file
