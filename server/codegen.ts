@@ -44,6 +44,7 @@ async function generate() {
       mappers: {
         User: '../db/queries/user#GQLUserModel',
         Blog: '../db/queries/blog#GQLBlogModel',
+        Post: '../db/queries/post#GQLPostModel',
       },
     },
     // filename is used by a plugin internally. The 'typescript' plugin
