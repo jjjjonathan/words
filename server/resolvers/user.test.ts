@@ -131,7 +131,31 @@ describe('User resolver', () => {
     expect(user.bio).toEqual(null);
   });
 
-  test.todo('blogs array should be empty if none exist');
+  test('blogs and posts arrays should be empty if none exist', async () => {
+    const query = gql`
+      {
+        user(username: "stacyexample") {
+          id
+          username
+          blogs {
+            id
+            title
+          }
+          posts {
+            id
+            slug
+          }
+        }
+      }
+    `;
+
+    const result = await server.executeOperation({ query });
+    const user = result?.data?.user;
+
+    expect(user.id).toEqual(2);
+    expect(user.blogs.length).toEqual(0);
+    expect(user.posts.length).toEqual(0);
+  });
 });
 
 afterAll(async () => {
