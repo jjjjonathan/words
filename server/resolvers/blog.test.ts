@@ -56,10 +56,8 @@ describe('Blog resolver', () => {
     const query = gql`
       {
         blog(slug: "not-a-real-blog") {
-          owner {
-            id
-            username
-          }
+          id
+          title
         }
       }
     `;
