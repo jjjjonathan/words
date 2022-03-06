@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server-lambda';
 import { server } from '../graphql';
-import { user1, blog1, post1 } from '../db/seed/test-seed-data';
+import { user1, user2, blog1, post1 } from '../db/seed/test-seed-data';
 import context from '../context';
 
 describe('User resolver', () => {
@@ -110,7 +110,26 @@ describe('User resolver', () => {
     expect(blogs[0].updatedAt).toEqual(expect.any(Date));
   });
 
-  test.todo('should return null with empty nullable fields');
+  test('should return null with empty nullable fields', async () => {
+    const query = gql`
+      {
+        user(username: "stacyexample") {
+          id
+          firstName
+          location
+          bio
+        }
+      }
+    `;
+
+    const result = await server.executeOperation({ query });
+    const user = result?.data?.user;
+
+    expect(user.id).toEqual(2);
+    expect(user.firstName).toEqual(user2.first_name);
+    expect(user.location).toEqual(null);
+    expect(user.bio).toEqual(null);
+  });
 
   test.todo('blogs array should be empty if none exist');
 });

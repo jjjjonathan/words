@@ -8,6 +8,17 @@ export const user1 = {
   bio: 'My name is Larry and I enjoy biking and making homemade pickles. I blog about beekeeping and religion.',
 };
 
+// Stacy does not have a location, bio, or any blogs or posts
+export const user2 = {
+  first_name: 'Stacy',
+  last_name: 'Example',
+  username: 'stacyexample',
+  password_hash: 'examplepassword',
+  email: 'stacy@example.com',
+  location: null,
+  bio: null,
+};
+
 export const blog1 = {
   owner: 1, // hard-coded to user 1
   title: "Beekeeper's Paradise",
