@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
-import Layout from '../components/layout';
-import Logo from '../components/logo';
+import Layout from '../components/Layout';
+import Logo from '../components/Logo';
 
 const Home: NextPage = () => (
   <Layout title="words">
