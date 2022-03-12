@@ -11,7 +11,9 @@ const GlobalStyle = createGlobalStyle`
 
     /* Colors */
     --color-white: #E3E4DB;
-    --color-black: black;
+    --color-black: #000000;
+    --color-red: #C95C44;
+    --color-dark-red: #9E422E;
 
     /* Fonts */
     --font-primary: "Ibarra Real Nova", sans-serif;
@@ -63,6 +65,16 @@ const GlobalStyle = createGlobalStyle`
 
   h1, h2, h3, h4, h5, h6 {
     font-weight: inherit;
+  }
+
+  a {
+    color: var(--color-red);
+    font-style: italic;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 
