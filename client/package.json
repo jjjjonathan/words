@@ -1,5 +1,6 @@
 {
-  "name": "words",
+  "name": "words-client",
+  "packageManager": "yarn@3.3.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
