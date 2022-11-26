@@ -1,11 +1,11 @@
 import React from "react";
-import Logo from "./Logo";
+import { Box, Typography } from "@mui/material";
 
 const Page = () => (
-  <div>
-    <Logo />
-    <h2>a minimalist blog platform</h2>
-  </div>
+  <Box>
+    <Typography>words</Typography>
+    <Typography>a minimalist blog platform</Typography>
+  </Box>
 );
 
 export default Page;
