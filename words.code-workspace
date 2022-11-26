@@ -1,13 +1,17 @@
 {
   "folders": [
-	{
-		"name": "client",
-		"path": "client"
-	},
-	{
-		"name": "server",
-		"path": "server"
-	}
-],
-  "settings": {}
+    {
+      "name": "client",
+      "path": "client"
+    },
+    {
+      "name": "server",
+      "path": "server"
+    }
+  ],
+  "settings": {
+    "files.associations": {
+      "*.yaml": "home-assistant"
+    }
+  }
 }
