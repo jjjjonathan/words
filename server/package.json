@@ -5,10 +5,10 @@
     "start": "NODE_ENV=development ts-node index.ts",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "typecheck": "tsc --noEmit",
-    "generate": "ts-node codegen.ts",
     "test": "npm run db:seed:test && jest --watch",
     "db:seed:dev": "bash db/seed/dev-seed.sh",
-    "db:seed:test": "bash db/seed/test-seed.sh"
+    "db:seed:test": "bash db/seed/test-seed.sh",
+    "generate": "graphql-codegen-esm --config codegen.yml"
   },
   "packageManager": "yarn@3.3.0",
   "engines": {
@@ -17,7 +17,6 @@
   "type": "module",
   "dependencies": {
     "@apollo/server": "^4.2.1",
-    "@graphql-tools/merge": "^8.2.3",
     "apollo-server-lambda": "^3.6.3",
     "custom-env": "^2.0.1",
     "graphql": "^16.6.0",
@@ -27,11 +26,10 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^6.0.0-alpha.7",
-    "@graphql-codegen/add": "^3.1.1",
-    "@graphql-codegen/core": "^2.5.1",
-    "@graphql-codegen/typescript": "2.4.3",
-    "@graphql-codegen/typescript-resolvers": "2.5.0",
-    "@graphql-tools/load-files": "^6.5.3",
+    "@graphql-codegen/cli": "2.14.1",
+    "@graphql-codegen/introspection": "2.2.1",
+    "@graphql-codegen/typescript": "2.8.2",
+    "@graphql-codegen/typescript-resolvers": "2.7.7",
     "@types/jest": "^29.2.3",
     "@types/node": "18.11.9",
     "@types/pg": "^8.6.4",
