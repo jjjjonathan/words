@@ -1,5 +1,5 @@
 {
-  "name": "words-backend",
+  "name": "words-server",
   "private": true,
   "scripts": {
     "dev": "NODE_ENV=development serverless offline",
@@ -9,6 +9,10 @@
     "test": "npm run db:seed:test && jest --watch",
     "db:seed:dev": "bash db/seed/dev-seed.sh",
     "db:seed:test": "bash db/seed/test-seed.sh"
+  },
+  "packageManager": "yarn@3.3.0",
+  "engines": {
+    "node": "18.12.1"
   },
   "dependencies": {
     "@graphql-tools/merge": "^8.2.3",

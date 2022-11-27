@@ -1,6 +1,5 @@
 {
   "name": "words-client",
-  "packageManager": "yarn@3.3.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,6 +8,7 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit"
   },
+  "packageManager": "yarn@3.3.0",
   "engines": {
     "node": "18.12.1"
   },
