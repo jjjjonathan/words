@@ -1,4 +1,4 @@
-import { Resolvers } from "../generated/resolver-types";
+import { Resolvers } from "../generated/graphql";
 import { getPostBySlug } from "../db/queries/post";
 import { getBlogById } from "../db/queries/blog";
 import { getUserById } from "../db/queries/user";

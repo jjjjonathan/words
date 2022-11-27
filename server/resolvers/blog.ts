@@ -1,7 +1,7 @@
 import { getBlogBySlug } from "../db/queries/blog";
 import { getAllPostsByBlogId } from "../db/queries/post";
 import { getUserById } from "../db/queries/user";
-import { Resolvers } from "../generated/resolver-types";
+import { Resolvers } from "../generated/graphql";
 
 const resolvers: Resolvers = {
   Query: {
