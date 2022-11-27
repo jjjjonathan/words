@@ -2,13 +2,14 @@
 import React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import createEmotionServer from "@emotion/server/create-instance";
-import theme, { ibarra } from "../styles/theme";
+import theme from "../styles/theme";
+import fonts from "../styles/fonts";
 import createEmotionCache from "../utils/createEmotionCache";
 
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en" className={ibarra.className}>
+      <Html lang="en" className={fonts}>
         <Head>
           <meta name="theme-color" content={theme.palette.primary.main} />
           {/* TODO: add favicon */}
