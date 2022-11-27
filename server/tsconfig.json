@@ -1,16 +1,20 @@
 {
   "compilerOptions": {
-    "preserveConstEnums": true,
-    "strictNullChecks": true,
-    "sourceMap": true,
     "allowJs": true,
-    "target": "es5",
-    "outDir": ".build",
+    "esModuleInterop": true,
+    "module": "ESNext",
     "moduleResolution": "node",
-    "lib": ["es2015"],
+    "outDir": ".build",
+    "preserveConstEnums": true,
     "rootDir": "./",
-    "strict": true,
     "skipLibCheck": true,
-    "esModuleInterop": true
+    "sourceMap": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "target": "es2017"
+  },
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
   }
 }
