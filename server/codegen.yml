@@ -4,5 +4,3 @@ emitLegacyCommonJSImports: false
 generates:
   "generated/graphql.ts":
     plugins: ["typescript", "typescript-resolvers"]
-  "./graphql.schema.json":
-    plugins: ["introspection"]

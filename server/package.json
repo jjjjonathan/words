@@ -27,7 +27,6 @@
   "devDependencies": {
     "@faker-js/faker": "^6.0.0-alpha.7",
     "@graphql-codegen/cli": "2.14.1",
-    "@graphql-codegen/introspection": "2.2.1",
     "@graphql-codegen/typescript": "2.8.2",
     "@graphql-codegen/typescript-resolvers": "2.7.7",
     "@types/jest": "^29.2.3",

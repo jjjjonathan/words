@@ -1237,19 +1237,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/introspection@npm:2.2.1":
-  version: 2.2.1
-  resolution: "@graphql-codegen/introspection@npm:2.2.1"
-  dependencies:
-    "@graphql-codegen/plugin-helpers": ^2.6.2
-    "@graphql-codegen/visitor-plugin-common": ^2.12.1
-    tslib: ~2.4.0
-  peerDependencies:
-    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 5de373889e9bd0f64ff622cecb92e92921ea01ee45e6edae713c4b9eb7aa70be6f18c125d4bd6d67af3abd26e8e4fbaa0a0268adcf71634b4ff9561df34883e8
-  languageName: node
-  linkType: hard
-
 "@graphql-codegen/plugin-helpers@npm:^2.6.2, @graphql-codegen/plugin-helpers@npm:^2.7.2":
   version: 2.7.2
   resolution: "@graphql-codegen/plugin-helpers@npm:2.7.2"
@@ -1310,7 +1297,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/visitor-plugin-common@npm:2.13.2, @graphql-codegen/visitor-plugin-common@npm:^2.12.1":
+"@graphql-codegen/visitor-plugin-common@npm:2.13.2":
   version: 2.13.2
   resolution: "@graphql-codegen/visitor-plugin-common@npm:2.13.2"
   dependencies:
@@ -9036,7 +9023,6 @@ __metadata:
     "@apollo/server": ^4.2.1
     "@faker-js/faker": ^6.0.0-alpha.7
     "@graphql-codegen/cli": 2.14.1
-    "@graphql-codegen/introspection": 2.2.1
     "@graphql-codegen/typescript": 2.8.2
     "@graphql-codegen/typescript-resolvers": 2.7.7
     "@types/jest": ^29.2.3
