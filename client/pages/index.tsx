@@ -1,3 +1,4 @@
+import React from "react";
 import { NextPage } from "next";
 import { Box, Typography } from "@mui/material";
 import Layout from "../components/Layout";
