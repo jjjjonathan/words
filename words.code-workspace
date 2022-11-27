@@ -9,9 +9,5 @@
       "path": "server"
     }
   ],
-  "settings": {
-    "files.associations": {
-      "*.yaml": "home-assistant"
-    }
-  }
+  "settings": {}
 }
