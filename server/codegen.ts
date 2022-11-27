@@ -6,7 +6,7 @@ import * as path from "path";
 import { loadFiles } from "@graphql-tools/load-files";
 import { mergeTypeDefs } from "@graphql-tools/merge";
 import { print } from "graphql";
-import { Types as CodegenPluginTypes } from "@graphql-codegen/plugin-helpers/types";
+import { Types as CodegenPluginTypes } from "@graphql-codegen/plugin-helpers";
 import * as addPlugin from "@graphql-codegen/add";
 import * as typescriptPlugin from "@graphql-codegen/typescript";
 import * as typescriptResolversPlugin from "@graphql-codegen/typescript-resolvers";

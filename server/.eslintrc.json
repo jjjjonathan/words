@@ -6,7 +6,7 @@
   "extends": ["airbnb-base", "airbnb-typescript/base", "prettier"],
   "parserOptions": {
     "ecmaVersion": "latest",
-    "project": "./server/tsconfig.json"
+    "project": "tsconfig.json"
   },
   "rules": {
     "@typescript-eslint/no-explicit-any": "error",
