@@ -1,10 +1,10 @@
-import { gql } from 'apollo-server-lambda';
-import { server } from '../graphql';
-import { blog1, user1, post1, blog2 } from '../db/seed/test-seed-data';
-import context from '../context';
+import { gql } from "apollo-server-lambda";
+import { server } from "../graphql";
+import { blog1, user1, post1, blog2 } from "../db/seed/test-seed-data";
+import context from "../context";
 
-describe('Blog resolver', () => {
-  test('should return valid primitive data with a slug argument', async () => {
+describe("Blog resolver", () => {
+  test("should return valid primitive data with a slug argument", async () => {
     const query = gql`
       {
         blog(slug: "beekeepers-paradise") {
@@ -29,7 +29,7 @@ describe('Blog resolver', () => {
     expect(blog.updatedAt).toEqual(expect.any(Date));
   });
 
-  test('should return a valid user object of primitive data for the blog owner', async () => {
+  test("should return a valid user object of primitive data for the blog owner", async () => {
     const query = gql`
       {
         blog(slug: "beekeepers-paradise") {
@@ -52,7 +52,7 @@ describe('Blog resolver', () => {
     expect(blog.owner.createdAt).toEqual(expect.any(Date));
   });
 
-  test('should return null with a non-existent slug', async () => {
+  test("should return null with a non-existent slug", async () => {
     const query = gql`
       {
         blog(slug: "not-a-real-blog") {
@@ -69,7 +69,7 @@ describe('Blog resolver', () => {
     expect(result?.errors).toBe(undefined);
   });
 
-  test('should return an array of blog posts', async () => {
+  test("should return an array of blog posts", async () => {
     const query = gql`
       {
         blog(slug: "beekeepers-paradise") {
@@ -96,7 +96,7 @@ describe('Blog resolver', () => {
     expect(blog.posts[0].updatedAt).toEqual(expect.any(Date));
   });
 
-  test('should return null with empty nullable fields', async () => {
+  test("should return null with empty nullable fields", async () => {
     const query = gql`
       {
         blog(slug: "world-religion-world") {

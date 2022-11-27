@@ -1,7 +1,7 @@
-import { Resolvers } from '../generated/resolver-types';
-import { getPostBySlug } from '../db/queries/post';
-import { getBlogById } from '../db/queries/blog';
-import { getUserById } from '../db/queries/user';
+import { Resolvers } from "../generated/resolver-types";
+import { getPostBySlug } from "../db/queries/post";
+import { getBlogById } from "../db/queries/blog";
+import { getUserById } from "../db/queries/user";
 
 const resolvers: Resolvers = {
   Query: {
@@ -16,7 +16,7 @@ const resolvers: Resolvers = {
       const blog = await getBlogById(blogId, context);
 
       if (blog === null)
-        throw new Error('Parent blog ID does not point to a valid blog');
+        throw new Error("Parent blog ID does not point to a valid blog");
 
       return blog;
     },
@@ -25,7 +25,7 @@ const resolvers: Resolvers = {
       const user = await getUserById(author, context);
 
       if (user === null)
-        throw new Error('Post author ID does not point to a valid user');
+        throw new Error("Post author ID does not point to a valid user");
 
       return user;
     },

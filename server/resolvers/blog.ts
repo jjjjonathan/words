@@ -1,7 +1,7 @@
-import { getBlogBySlug } from '../db/queries/blog';
-import { getAllPostsByBlogId } from '../db/queries/post';
-import { getUserById } from '../db/queries/user';
-import { Resolvers } from '../generated/resolver-types';
+import { getBlogBySlug } from "../db/queries/blog";
+import { getAllPostsByBlogId } from "../db/queries/post";
+import { getUserById } from "../db/queries/user";
+import { Resolvers } from "../generated/resolver-types";
 
 const resolvers: Resolvers = {
   Query: {
@@ -16,7 +16,7 @@ const resolvers: Resolvers = {
       const user = await getUserById(owner, context);
 
       if (user === null)
-        throw new Error('Blog owner ID does not point to a valid user');
+        throw new Error("Blog owner ID does not point to a valid user");
 
       return user;
     },

@@ -1,31 +1,31 @@
 // Some imports are devDependencies. This file is only run in dev
 /* eslint-disable import/no-extraneous-dependencies */
 
-import * as fs from 'fs/promises';
-import * as path from 'path';
-import { loadFiles } from '@graphql-tools/load-files';
-import { mergeTypeDefs } from '@graphql-tools/merge';
-import { print } from 'graphql';
-import { Types as CodegenPluginTypes } from '@graphql-codegen/plugin-helpers/types';
-import * as addPlugin from '@graphql-codegen/add';
-import * as typescriptPlugin from '@graphql-codegen/typescript';
-import * as typescriptResolversPlugin from '@graphql-codegen/typescript-resolvers';
-import { codegen } from '@graphql-codegen/core';
+import * as fs from "fs/promises";
+import * as path from "path";
+import { loadFiles } from "@graphql-tools/load-files";
+import { mergeTypeDefs } from "@graphql-tools/merge";
+import { print } from "graphql";
+import { Types as CodegenPluginTypes } from "@graphql-codegen/plugin-helpers/types";
+import * as addPlugin from "@graphql-codegen/add";
+import * as typescriptPlugin from "@graphql-codegen/typescript";
+import * as typescriptResolversPlugin from "@graphql-codegen/typescript-resolvers";
+import { codegen } from "@graphql-codegen/core";
 
 // Set paths
-const typeDefsDir = './type-defs';
-const typeDefsOutputFile = './generated/all-type-defs.ts';
-const resolverTypesOutputFile = './generated/resolver-types.ts';
+const typeDefsDir = "./type-defs";
+const typeDefsOutputFile = "./generated/all-type-defs.ts";
+const resolverTypesOutputFile = "./generated/resolver-types.ts";
 
 async function generate() {
-  console.log('Starting GraphQL code generation...');
+  console.log("Starting GraphQL code generation...");
   console.log(`Loading typeDefs from ${typeDefsDir}`);
 
   // Load and merge all typeDefs
   const typeDefsArray = await loadFiles(path.join(__dirname, typeDefsDir));
   const allTypeDefs = mergeTypeDefs(typeDefsArray);
 
-  console.log('Compiling typeDefs...');
+  console.log("Compiling typeDefs...");
 
   // Output all typeDefs to TS file
   const printedTypeDefs = print(allTypeDefs);
@@ -40,15 +40,15 @@ async function generate() {
   const config: CodegenPluginTypes.GenerateOptions = {
     documents: [],
     config: {
-      contextType: 'MyContext',
+      contextType: "MyContext",
       mappers: {
-        User: '../db/queries/user#GQLUserModel',
-        Blog: '../db/queries/blog#GQLBlogModel',
-        Post: '../db/queries/post#GQLPostModel',
+        User: "../db/queries/user#GQLUserModel",
+        Blog: "../db/queries/blog#GQLBlogModel",
+        Post: "../db/queries/post#GQLPostModel",
       },
       scalars: {
-        DateTime: 'Date',
-        EmailAddress: 'string',
+        DateTime: "Date",
+        EmailAddress: "string",
       },
     },
     // filename is used by a plugin internally. The 'typescript' plugin
@@ -80,20 +80,20 @@ async function generate() {
     },
   };
 
-  console.log('Generating TypeScript definitions...');
+  console.log("Generating TypeScript definitions...");
 
   // Output TS defs to string and write to file
   const output = await codegen(config);
   const absoluteResolverTypesOutputPath = path.join(
     __dirname,
-    resolverTypesOutputFile,
+    resolverTypesOutputFile
   );
   await fs.writeFile(absoluteResolverTypesOutputPath, output);
 
   console.log(
-    `TypeScript definitions for resolvers outputted to \n\t ${absoluteResolverTypesOutputPath}`,
+    `TypeScript definitions for resolvers outputted to \n\t ${absoluteResolverTypesOutputPath}`
   );
-  console.log('Code generation complete!');
+  console.log("Code generation complete!");
 }
 
 generate();

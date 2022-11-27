@@ -1,7 +1,7 @@
-import format from 'pg-format';
-import type { QueryResult } from 'pg';
-import db from '..';
-import { createUser, createBlog, createPost } from './faker';
+import format from "pg-format";
+import type { QueryResult } from "pg";
+import db from "..";
+import { createUser, createBlog, createPost } from "./faker";
 
 async function seed() {
   // Number to seed of each
@@ -34,17 +34,17 @@ async function seed() {
       email,
       location,
       bio,
-    ],
+    ]
   );
 
-  console.log('Seeding users...');
+  console.log("Seeding users...");
 
   // Seed users and get user IDs
   const userQueryRes: QueryResult<{ id: number }> = await db.query(
     format(
-      'INSERT INTO users (first_name, last_name, username, password_hash, email, location, bio) VALUES %L RETURNING id',
-      fakeUsersArrays,
-    ),
+      "INSERT INTO users (first_name, last_name, username, password_hash, email, location, bio) VALUES %L RETURNING id",
+      fakeUsersArrays
+    )
   );
 
   // Convert result into array of numbers
@@ -71,15 +71,15 @@ async function seed() {
     slug,
   ]);
 
-  console.log('Seeding blogs...');
+  console.log("Seeding blogs...");
 
   // Seed blogs and get blog IDs with owners
   const blogQueryRes: QueryResult<{ id: number; owner: number }> =
     await db.query(
       format(
-        'INSERT INTO blogs (owner, title, subtitle, slug) VALUES %L RETURNING id, owner',
-        fakeBlogsArrays,
-      ),
+        "INSERT INTO blogs (owner, title, subtitle, slug) VALUES %L RETURNING id, owner",
+        fakeBlogsArrays
+      )
     );
 
   // Generate fake posts
@@ -105,17 +105,17 @@ async function seed() {
     return [title, body, randomBlog, randomUser, slug];
   });
 
-  console.log('Seeding posts...');
+  console.log("Seeding posts...");
 
   // Seed posts
   await db.query(
     format(
-      'INSERT INTO posts (title, body, blog, author, slug) VALUES %L',
-      fakePostsArrays,
-    ),
+      "INSERT INTO posts (title, body, blog, author, slug) VALUES %L",
+      fakePostsArrays
+    )
   );
 
-  console.log('Database successfully seeded!');
+  console.log("Database successfully seeded!");
 
   // Exit process
   process.exit(0);

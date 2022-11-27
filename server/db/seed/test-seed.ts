@@ -1,6 +1,6 @@
-import format from 'pg-format';
-import db from '..';
-import { user1, user2, blog1, blog2, post1 } from './test-seed-data';
+import format from "pg-format";
+import db from "..";
+import { user1, user2, blog1, blog2, post1 } from "./test-seed-data";
 
 async function seed() {
   // Test data
@@ -27,17 +27,17 @@ async function seed() {
       email,
       location,
       bio,
-    ],
+    ]
   );
 
-  console.log('Seeding users...');
+  console.log("Seeding users...");
 
   // Seed users
   await db.query(
     format(
-      'INSERT INTO users (first_name, last_name, username, password_hash, email, location, bio) VALUES %L',
-      testUsersArrays,
-    ),
+      "INSERT INTO users (first_name, last_name, username, password_hash, email, location, bio) VALUES %L",
+      testUsersArrays
+    )
   );
 
   // Convert object to array
@@ -49,33 +49,33 @@ async function seed() {
     slug,
   ]);
 
-  console.log('Seeding blogs...');
+  console.log("Seeding blogs...");
 
   // Seed blogs
   await db.query(
     format(
-      'INSERT INTO blogs (owner, title, subtitle, slug) VALUES %L',
-      testBlogsArrays,
-    ),
+      "INSERT INTO blogs (owner, title, subtitle, slug) VALUES %L",
+      testBlogsArrays
+    )
   );
 
   // Convert object to array
   const testPostsArrays = testPosts.map(({ title, body, blog, author, slug }) =>
     // Array item order must match query column order
-    [title, body, blog, author, slug],
+    [title, body, blog, author, slug]
   );
 
-  console.log('Seeding posts...');
+  console.log("Seeding posts...");
 
   // Seed posts
   await db.query(
     format(
-      'INSERT INTO posts (title, body, blog, author, slug) VALUES %L',
-      testPostsArrays,
-    ),
+      "INSERT INTO posts (title, body, blog, author, slug) VALUES %L",
+      testPostsArrays
+    )
   );
 
-  console.log('Database successfully seeded!');
+  console.log("Database successfully seeded!");
 
   // Exit process
   process.exit(0);

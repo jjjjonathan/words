@@ -1,10 +1,10 @@
-import { gql } from 'apollo-server-lambda';
-import { server } from '../graphql';
-import { user1, user2, blog1, post1 } from '../db/seed/test-seed-data';
-import context from '../context';
+import { gql } from "apollo-server-lambda";
+import { server } from "../graphql";
+import { user1, user2, blog1, post1 } from "../db/seed/test-seed-data";
+import context from "../context";
 
-describe('User resolver', () => {
-  test('should return valid primitive data with a username argument', async () => {
+describe("User resolver", () => {
+  test("should return valid primitive data with a username argument", async () => {
     const query = gql`
       {
         user(username: "larryexample") {
@@ -35,7 +35,7 @@ describe('User resolver', () => {
     expect(user.updatedAt).toEqual(expect.any(Date));
   });
 
-  test('should return null with a non-existent username', async () => {
+  test("should return null with a non-existent username", async () => {
     const query = gql`
       {
         user(username: "notarealuser") {
@@ -52,7 +52,7 @@ describe('User resolver', () => {
     expect(result?.errors).toBe(undefined);
   });
 
-  test('should return an array of blog posts', async () => {
+  test("should return an array of blog posts", async () => {
     const query = gql`
       {
         user(username: "larryexample") {
@@ -81,7 +81,7 @@ describe('User resolver', () => {
     expect(posts[0].updatedAt).toEqual(expect.any(Date));
   });
 
-  test('should return an array of blogs', async () => {
+  test("should return an array of blogs", async () => {
     const query = gql`
       {
         user(username: "larryexample") {
@@ -110,7 +110,7 @@ describe('User resolver', () => {
     expect(blogs[0].updatedAt).toEqual(expect.any(Date));
   });
 
-  test('should return null with empty nullable fields', async () => {
+  test("should return null with empty nullable fields", async () => {
     const query = gql`
       {
         user(username: "stacyexample") {
@@ -131,7 +131,7 @@ describe('User resolver', () => {
     expect(user.bio).toEqual(null);
   });
 
-  test('blogs and posts arrays should be empty if none exist', async () => {
+  test("blogs and posts arrays should be empty if none exist", async () => {
     const query = gql`
       {
         user(username: "stacyexample") {

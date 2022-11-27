@@ -1,5 +1,5 @@
-import { MyContext } from '../../context';
-import { PostModel } from '../models';
+import { MyContext } from "../../context";
+import { PostModel } from "../models";
 
 const formatPost = (post: PostModel) => ({
   id: post.id,
@@ -16,8 +16,8 @@ export type GQLPostModel = ReturnType<typeof formatPost>;
 
 export const getPostBySlug = async (slug: string, context: MyContext) => {
   const { rows } = await context.db.query<PostModel>(
-    'SELECT * FROM posts WHERE slug=$1',
-    [slug],
+    "SELECT * FROM posts WHERE slug=$1",
+    [slug]
   );
 
   // Return null if post is not found
@@ -30,8 +30,8 @@ export const getPostBySlug = async (slug: string, context: MyContext) => {
 
 export const getAllPostsByUserId = async (id: number, context: MyContext) => {
   const { rows } = await context.db.query<PostModel>(
-    'SELECT * FROM posts WHERE author=$1',
-    [id],
+    "SELECT * FROM posts WHERE author=$1",
+    [id]
   );
 
   // Format all rows
@@ -40,8 +40,8 @@ export const getAllPostsByUserId = async (id: number, context: MyContext) => {
 
 export const getAllPostsByBlogId = async (id: number, context: MyContext) => {
   const { rows } = await context.db.query<PostModel>(
-    'SELECT * FROM posts WHERE blog=$1',
-    [id],
+    "SELECT * FROM posts WHERE blog=$1",
+    [id]
   );
 
   // Format all rows

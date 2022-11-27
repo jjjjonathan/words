@@ -1,5 +1,5 @@
-import { MyContext } from '../../context';
-import { UserModel } from '../models';
+import { MyContext } from "../../context";
+import { UserModel } from "../models";
 
 const formatUser = (user: UserModel) => ({
   id: user.id,
@@ -19,11 +19,11 @@ export type GQLUserModel = ReturnType<typeof formatUser>;
 
 export const getUserByUsername = async (
   username: string,
-  context: MyContext,
+  context: MyContext
 ) => {
   const { rows } = await context.db.query<UserModel>(
-    'SELECT * FROM users WHERE username=$1',
-    [username],
+    "SELECT * FROM users WHERE username=$1",
+    [username]
   );
 
   // Return null if user is not found
@@ -36,8 +36,8 @@ export const getUserByUsername = async (
 
 export const getUserById = async (id: number, context: MyContext) => {
   const { rows } = await context.db.query<UserModel>(
-    'SELECT * FROM users WHERE id=$1',
-    [id],
+    "SELECT * FROM users WHERE id=$1",
+    [id]
   );
 
   // Return null if user is not found
