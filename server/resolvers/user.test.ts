@@ -1,7 +1,9 @@
-import { gql } from "apollo-server-lambda";
-import { server } from "../graphql";
+import gql from "graphql-tag";
+import assert from "node:assert";
+import { executeOperation } from "../server";
 import { user1, user2, blog1, post1 } from "../db/seed/test-seed-data";
 import context from "../context";
+import { User } from "../generated/graphql";
 
 describe("User resolver", () => {
   test("should return valid primitive data with a username argument", async () => {
@@ -21,8 +23,10 @@ describe("User resolver", () => {
       }
     `;
 
-    const result = await server.executeOperation({ query });
-    const user = result?.data?.user;
+    const { body } = await executeOperation<{ user: User }>(query);
+    assert(body.kind === "single");
+    const user = body.singleResult.data?.user;
+    assert(user);
 
     expect(user.id).toEqual(1);
     expect(user.firstName).toEqual(user1.first_name);
@@ -45,11 +49,12 @@ describe("User resolver", () => {
       }
     `;
 
-    const result = await server.executeOperation({ query });
-    const user = result?.data?.user;
+    const { body } = await executeOperation<{ user: User }>(query);
+    assert(body.kind === "single");
+    const user = body.singleResult.data?.user;
 
     expect(user).toEqual(null);
-    expect(result?.errors).toBe(undefined);
+    expect(body.singleResult.errors).toBe(undefined);
   });
 
   test("should return an array of blog posts", async () => {
@@ -70,8 +75,14 @@ describe("User resolver", () => {
       }
     `;
 
-    const result = await server.executeOperation({ query });
-    const posts = result?.data?.user.posts;
+    const { body } = await executeOperation<{ user: User }>(query);
+    assert(body.kind === "single");
+    const posts = body.singleResult.data?.user.posts;
+    assert(posts);
+
+    assert(Array.isArray(posts));
+    assert(posts[0]);
+    expect(posts.length).toEqual(1);
 
     expect(posts[0].id).toEqual(1);
     expect(posts[0].title).toEqual(post1.title);
@@ -99,8 +110,14 @@ describe("User resolver", () => {
       }
     `;
 
-    const result = await server.executeOperation({ query });
-    const blogs = result?.data?.user.blogs;
+    const { body } = await executeOperation<{ user: User }>(query);
+    assert(body.kind === "single");
+    const blogs = body.singleResult.data?.user.blogs;
+    assert(blogs);
+
+    assert(Array.isArray(blogs));
+    assert(blogs[0]);
+    expect(blogs.length).toEqual(2);
 
     expect(blogs[0].id).toEqual(1);
     expect(blogs[0].title).toEqual(blog1.title);
@@ -122,8 +139,10 @@ describe("User resolver", () => {
       }
     `;
 
-    const result = await server.executeOperation({ query });
-    const user = result?.data?.user;
+    const { body } = await executeOperation<{ user: User }>(query);
+    assert(body.kind === "single");
+    const user = body.singleResult.data?.user;
+    assert(user);
 
     expect(user.id).toEqual(2);
     expect(user.firstName).toEqual(user2.first_name);
@@ -149,8 +168,10 @@ describe("User resolver", () => {
       }
     `;
 
-    const result = await server.executeOperation({ query });
-    const user = result?.data?.user;
+    const { body } = await executeOperation<{ user: User }>(query);
+    assert(body.kind === "single");
+    const user = body.singleResult.data?.user;
+    assert(user);
 
     expect(user.id).toEqual(2);
     expect(user.blogs.length).toEqual(0);

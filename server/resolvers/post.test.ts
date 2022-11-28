@@ -1,7 +1,9 @@
-import { gql } from "apollo-server-lambda";
-import { server } from "../graphql";
+import gql from "graphql-tag";
+import assert from "node:assert";
+import { executeOperation } from "../server";
 import { post1, blog1, user1 } from "../db/seed/test-seed-data";
 import context from "../context";
+import { Post } from "../generated/graphql";
 
 describe("Post resolver", () => {
   test("should return valid primitive data with a slug argument", async () => {
@@ -18,8 +20,10 @@ describe("Post resolver", () => {
       }
     `;
 
-    const result = await server.executeOperation({ query });
-    const post = result?.data?.post;
+    const { body } = await executeOperation<{ post: Post }>(query);
+    assert(body.kind === "single");
+    const post = body.singleResult.data?.post;
+    assert(post);
 
     expect(post.id).toEqual(1);
     expect(post.title).toEqual(post1.title);
@@ -47,8 +51,10 @@ describe("Post resolver", () => {
       }
     `;
 
-    const result = await server.executeOperation({ query });
-    const post = result?.data?.post;
+    const { body } = await executeOperation<{ post: Post }>(query);
+    assert(body.kind === "single");
+    const post = body.singleResult.data?.post;
+    assert(post);
 
     expect(post.id).toEqual(1);
     expect(post.title).toEqual(post1.title);
@@ -77,8 +83,10 @@ describe("Post resolver", () => {
       }
     `;
 
-    const result = await server.executeOperation({ query });
-    const post = result?.data?.post;
+    const { body } = await executeOperation<{ post: Post }>(query);
+    assert(body.kind === "single");
+    const post = body.singleResult.data?.post;
+    assert(post);
 
     expect(post.id).toEqual(1);
     expect(post.title).toEqual(post1.title);
@@ -99,11 +107,12 @@ describe("Post resolver", () => {
       }
     `;
 
-    const result = await server.executeOperation({ query });
-    const post = result?.data?.post;
+    const { body } = await executeOperation<{ post: Post }>(query);
+    assert(body.kind === "single");
+    const post = body.singleResult.data?.post;
 
     expect(post).toEqual(null);
-    expect(result?.errors).toBe(undefined);
+    expect(body.singleResult.errors).toBe(undefined);
   });
 });
 
