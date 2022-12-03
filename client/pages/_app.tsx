@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import { AppProps } from "next/app";
+import { SessionProvider } from "next-auth/react";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import theme from "../styles/theme";
@@ -16,7 +17,7 @@ interface Props extends AppProps {
 const App = ({
   Component,
   emotionCache = clientSideEmotionCache,
-  pageProps,
+  pageProps: { session, ...pageProps },
 }: Props) => (
   <CacheProvider value={emotionCache}>
     <Head>
@@ -24,10 +25,12 @@ const App = ({
       <meta name="description" content="minimalist blog app" />
       <title>words</title>
     </Head>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <SessionProvider session={session}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </SessionProvider>
   </CacheProvider>
 );
 
