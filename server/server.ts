@@ -2,9 +2,9 @@ import { ApolloServer } from "@apollo/server";
 import { DocumentNode } from "graphql";
 import typeDefs from "./typeDefs";
 import resolvers from "./resolvers";
-import context from "./context";
+import context, { MyContext } from "./context";
 
-const server = new ApolloServer({
+const server = new ApolloServer<MyContext>({
   typeDefs,
   resolvers,
 });
