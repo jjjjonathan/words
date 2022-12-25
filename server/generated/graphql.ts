@@ -34,12 +34,12 @@ export type Blog = Timestamps & {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createPost?: Maybe<Post>;
+  addPost?: Maybe<Post>;
 };
 
 
-export type MutationCreatePostArgs = {
-  blogId: Scalars['String'];
+export type MutationAddPostArgs = {
+  blogId: Scalars['Int'];
   body: Scalars['String'];
   title: Scalars['String'];
 };
@@ -216,7 +216,7 @@ export interface EmailAddressScalarConfig extends GraphQLScalarTypeConfig<Resolv
 }
 
 export type MutationResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  createPost?: Resolver<Maybe<ResolversTypes['Post']>, ParentType, ContextType, RequireFields<MutationCreatePostArgs, 'blogId' | 'body' | 'title'>>;
+  addPost?: Resolver<Maybe<ResolversTypes['Post']>, ParentType, ContextType, RequireFields<MutationAddPostArgs, 'blogId' | 'body' | 'title'>>;
 };
 
 export type PostResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Post'] = ResolversParentTypes['Post']> = {

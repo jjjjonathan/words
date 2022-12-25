@@ -15,5 +15,5 @@ type Query {
 }
 
 type Mutation {
-  createPost(title: String!, body: String!, blogId: String!): Post
+  addPost(title: String!, body: String!, blogId: Int!): Post
 }

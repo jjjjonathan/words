@@ -1,3 +1,4 @@
+import kebabCase from "lodash/kebabCase";
 import { MyContext } from "../../context";
 import { PostModel } from "../models";
 
@@ -46,4 +47,32 @@ export const getAllPostsByBlogId = async (id: number, context: MyContext) => {
 
   // Format all rows
   return rows.map((row) => formatPost(row));
+};
+
+export const createPost = async (
+  { blogId, body, title }: { blogId: number; body: string; title: string },
+  context: MyContext
+) => {
+  try {
+    const slug = kebabCase(title);
+
+    // TODO: Remove hard-coded author, validation on slug
+    const { rows } = await context.db.query<PostModel>(
+      // "SELECT * FROM posts WHERE slug=$1",
+      "INSERT INTO posts (author, blog, body, title, slug) VALUES (1, $1, $2, $3, $4) RETURNING *",
+      [blogId, body, title, slug]
+    );
+
+    console.log(rows);
+
+    // Return null if post is not found
+    if (rows.length === 0) return null;
+
+    // Else format and return first row
+    const post = rows[0];
+    return formatPost(post);
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
 };

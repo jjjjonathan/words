@@ -1,5 +1,5 @@
 import { Resolvers } from "../generated/graphql";
-import { getPostBySlug } from "../db/queries/post";
+import { createPost, getPostBySlug } from "../db/queries/post";
 import { getBlogById } from "../db/queries/blog";
 import { getUserById } from "../db/queries/user";
 
@@ -7,6 +7,13 @@ const resolvers: Resolvers = {
   Query: {
     post: async (parent, { slug }, context) => {
       const post = await getPostBySlug(slug, context);
+      return post;
+    },
+  },
+
+  Mutation: {
+    addPost: async (parent, { blogId, body, title }, context) => {
+      const post = await createPost({ blogId, body, title }, context);
       return post;
     },
   },
