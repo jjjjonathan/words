@@ -32,6 +32,18 @@ export type Blog = Timestamps & {
   updatedAt: Scalars['DateTime'];
 };
 
+export type Mutation = {
+  __typename?: 'Mutation';
+  createPost?: Maybe<Post>;
+};
+
+
+export type MutationCreatePostArgs = {
+  blogId: Scalars['String'];
+  body: Scalars['String'];
+  title: Scalars['String'];
+};
+
 export type Post = Timestamps & {
   __typename?: 'Post';
   author: User;
@@ -160,6 +172,7 @@ export type ResolversTypes = {
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
   EmailAddress: ResolverTypeWrapper<Scalars['EmailAddress']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
+  Mutation: ResolverTypeWrapper<{}>;
   Post: ResolverTypeWrapper<GQLPostModel>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
@@ -174,6 +187,7 @@ export type ResolversParentTypes = {
   DateTime: Scalars['DateTime'];
   EmailAddress: Scalars['EmailAddress'];
   Int: Scalars['Int'];
+  Mutation: {};
   Post: GQLPostModel;
   Query: {};
   String: Scalars['String'];
@@ -200,6 +214,10 @@ export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 export interface EmailAddressScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['EmailAddress'], any> {
   name: 'EmailAddress';
 }
+
+export type MutationResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  createPost?: Resolver<Maybe<ResolversTypes['Post']>, ParentType, ContextType, RequireFields<MutationCreatePostArgs, 'blogId' | 'body' | 'title'>>;
+};
 
 export type PostResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Post'] = ResolversParentTypes['Post']> = {
   author?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
@@ -244,6 +262,7 @@ export type Resolvers<ContextType = MyContext> = {
   Blog?: BlogResolvers<ContextType>;
   DateTime?: GraphQLScalarType;
   EmailAddress?: GraphQLScalarType;
+  Mutation?: MutationResolvers<ContextType>;
   Post?: PostResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Timestamps?: TimestampsResolvers<ContextType>;

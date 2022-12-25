@@ -13,3 +13,7 @@ type Post implements Timestamps {
 type Query {
   post(slug: String!): Post
 }
+
+type Mutation {
+  createPost(title: String!, body: String!, blogId: String!): Post
+}
