@@ -1,49 +1,46 @@
 import React from "react";
 import { InferGetServerSidePropsType, NextPage } from "next";
 import { Box, Typography } from "@mui/material";
-import { gql } from "@apollo/client";
 import Layout from "../../components/Layout";
 import client from "../../utils/apolloClient";
-import { Post, Query } from "../../generated/graphql";
+import { graphql } from "../../generated/gql";
 
 const testSlug = "defect-Shoes-mobile-stable-maroon";
 
 export const getServerSideProps = async () => {
-  try {
-    console.log("here");
-    const { data } = await client.query<Query["post"]>({
-      query: gql`
-        query GetPost($slug: String!) {
-          post(slug: $slug) {
-            id
-            title
-            body
-            author {
-              firstName
-              lastName
-              username
-            }
-            slug
-            createdAt
-            updatedAt
-          }
+  // try {
+  const getPostQueryDocument = graphql(`
+    query GetPost($slug: String!) {
+      post(slug: $slug) {
+        id
+        title
+        body
+        author {
+          firstName
+          lastName
+          username
         }
-      `,
+        slug
+        createdAt
+        updatedAt
+      }
+    }
+  `);
 
-      variables: {
-        slug: testSlug,
-      },
-    });
+  const { data } = await client.query({
+    query: getPostQueryDocument,
+    variables: { slug: testSlug },
+  });
 
-    return {
-      props: {
-        post: data?.post,
-      },
-    };
-  } catch (err) {
-    // TODO: redirect or render error?
-    console.log(err);
-  }
+  return {
+    props: {
+      post: data?.post,
+    },
+  };
+  // } catch (err) {
+  // TODO: redirect or render error?
+  //   console.log(err);
+  // }
 };
 
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
