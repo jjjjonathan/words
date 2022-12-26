@@ -1,4 +1,3 @@
-// const path = require('path')
 import { loadFilesSync } from "@graphql-tools/load-files";
 import { mergeTypeDefs } from "@graphql-tools/merge";
 
