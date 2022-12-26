@@ -4,13 +4,14 @@ import { Box, Typography } from "@mui/material";
 import { gql } from "@apollo/client";
 import Layout from "../../components/Layout";
 import client from "../../utils/apolloClient";
+import { Post, Query } from "../../generated/graphql";
 
 const testSlug = "defect-Shoes-mobile-stable-maroon";
 
 export const getServerSideProps = async () => {
   try {
     console.log("here");
-    const { data } = await client.query({
+    const { data } = await client.query<Query["post"]>({
       query: gql`
         query GetPost($slug: String!) {
           post(slug: $slug) {
@@ -36,7 +37,7 @@ export const getServerSideProps = async () => {
 
     return {
       props: {
-        post: data.post,
+        post: data?.post,
       },
     };
   } catch (err) {
