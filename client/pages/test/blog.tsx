@@ -12,9 +12,13 @@ import { GetPostQuery } from "../../generated/graphql";
 
 const testSlug = "defect-Shoes-mobile-stable-maroon";
 
-export const getServerSideProps: GetServerSideProps<{
+interface ServerSideProps {
   post: GetPostQuery["post"];
-}> = async () => {
+}
+
+export const getServerSideProps: GetServerSideProps<
+  ServerSideProps
+> = async () => {
   const getPostQueryDocument = graphql(`
     query GetPost($slug: String!) {
       post(slug: $slug) {
