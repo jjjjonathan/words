@@ -8,7 +8,7 @@ generates:
       - typescript-resolvers
 config:
   scalars:
-    DateTime: Date
+    DateTime: string
     EmailAddress: string
   mappers:
     User: ../db/queries/user#GQLUserModel

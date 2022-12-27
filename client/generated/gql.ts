@@ -13,9 +13,14 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel-plugin for production.
  */
 const documents = {
+    "\n    query GetBlog($slug: String!) {\n      blog(slug: $slug) {\n        slug\n        title\n        subtitle\n        owner {\n          username\n        }\n        posts {\n          title\n          slug\n        }\n      }\n    }\n  ": types.GetBlogDocument,
     "\n    query GetPost($slug: String!) {\n      post(slug: $slug) {\n        id\n        title\n        body\n        author {\n          firstName\n          lastName\n          username\n        }\n        slug\n        createdAt\n        updatedAt\n      }\n    }\n  ": types.GetPostDocument,
 };
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    query GetBlog($slug: String!) {\n      blog(slug: $slug) {\n        slug\n        title\n        subtitle\n        owner {\n          username\n        }\n        posts {\n          title\n          slug\n        }\n      }\n    }\n  "): (typeof documents)["\n    query GetBlog($slug: String!) {\n      blog(slug: $slug) {\n        slug\n        title\n        subtitle\n        owner {\n          username\n        }\n        posts {\n          title\n          slug\n        }\n      }\n    }\n  "];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
