@@ -116,6 +116,11 @@ describe("Post resolver", () => {
   });
 });
 
+describe("addPost mutation", () => {
+  test.todo("should create a new post in the database and return it");
+  test.todo("should reject with invalid data");
+});
+
 afterAll(async () => {
   await context.db.end();
 });
