@@ -1,14 +1,20 @@
 import React from "react";
-import { InferGetServerSidePropsType, NextPage } from "next";
+import {
+  GetServerSideProps,
+  InferGetServerSidePropsType,
+  NextPage,
+} from "next";
 import { Box, Typography } from "@mui/material";
 import Layout from "../../components/Layout";
 import client from "../../utils/apolloClient";
 import { graphql } from "../../generated/gql";
+import { GetPostQuery } from "../../generated/graphql";
 
 const testSlug = "defect-Shoes-mobile-stable-maroon";
 
-export const getServerSideProps = async () => {
-  // try {
+export const getServerSideProps: GetServerSideProps<{
+  post: GetPostQuery["post"];
+}> = async () => {
   const getPostQueryDocument = graphql(`
     query GetPost($slug: String!) {
       post(slug: $slug) {
@@ -37,16 +43,13 @@ export const getServerSideProps = async () => {
       post: data?.post,
     },
   };
-  // } catch (err) {
-  // TODO: redirect or render error?
-  //   console.log(err);
-  // }
 };
 
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
 
-const Blog: NextPage = ({ post }: Props) => {
-  console.log(post);
+const Blog: NextPage<Props> = ({ post }) => {
+  if (!post) return null;
+
   return (
     <Layout title="home">
       <Box>
